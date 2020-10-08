@@ -9,7 +9,7 @@ const readFile = (name) =>
   new Promise((resolve, reject) => {
     fs.readFile(name, "utf8", (err, data) => {
       if (err) reject(err);
-      resolve(data);
+      resolve(JSON.parse(data));
     });
   });
 
