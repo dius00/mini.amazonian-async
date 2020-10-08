@@ -1,7 +1,7 @@
 const fs = require("fs");
-const { resolve } = require("path");
+// const { resolve } = require("path");
 const { readFile, produceResult } = require("./helpers");
-const result = require("./test/fixtures/result");
+// const result = require("./test/fixtures/result");
 
 class ReviewBuilder {
   buildReviewsSync() {
@@ -44,24 +44,13 @@ class ReviewBuilder {
     });
   }
 
-  /*
-  {
-    productName: product.name,
-    username: user.username,
-    text: review.text,
-    rating: review.rating
-}
-
-  */
-  /*
-  function getData(fileName, type) {
-    return new Promise(function(resolve, reject){
-      fs.readFile(fileName, type, (err, data) => {
-          err ? reject(err) : resolve(data);
-      });
-*/
   async buildReviewsAsyncAwait() {
-    // FIXME
+    const joined = {
+      products: await readFile("./data/products.json"),
+      reviews: await readFile("./data/reviews.json"),
+      users: await readFile("./data/users.json"),
+    };
+    return produceResult(joined);
   }
 }
 
